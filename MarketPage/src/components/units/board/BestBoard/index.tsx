@@ -1,9 +1,9 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql ,useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IQuery } from "../../../../commons/types/generated/types";
-import { IUseditem } from "../../../../../../class/src/commons/types/generated/types";
 import { useRouter } from "next/router";
+import { IUseditem } from '../../../../../../MarketPage/src/commons/types/generated/types';
 
 const FETCH_BOARD_BEST = gql`
   query fetchBoardsOfTheBest {

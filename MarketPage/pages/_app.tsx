@@ -10,6 +10,7 @@ import Layout from "../src/commons/Layout/index";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { createUploadLink } from "apollo-upload-client";
+import { RecoilRoot } from 'recoil';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
@@ -22,9 +23,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
+      <RecoilRoot>
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      </RecoilRoot>
     </ApolloProvider>
   );
 }

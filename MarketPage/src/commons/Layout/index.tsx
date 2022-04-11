@@ -1,9 +1,6 @@
-import BannerLayout from "./Banner/banner";
-import HeaderLayout from "./Header/header";
-import NavigationLayout from "./Navigation/navigation";
+
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
-// import { useRouter } from "next/router";
 
 const Body = styled.div`
   display: flex;
@@ -22,9 +19,9 @@ export default function LayOutPage(props: LayOutPageProps) {
   // const isHidden = HIDDEN.includes(router.asPath);
   return (
     <>
-      <HeaderLayout />
+      {/* <HeaderLayout />
       <NavigationLayout />
-      <BannerLayout />
+      <BannerLayout /> */}
       <Body>{props.children}</Body>
     </>
   );
