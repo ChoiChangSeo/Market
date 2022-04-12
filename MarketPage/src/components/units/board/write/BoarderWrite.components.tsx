@@ -5,8 +5,8 @@ import BoarderWriteUI from "./BoarderWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoarderWrite.queries";
 import { BoarderWritePageProps, IUpdateBoardInput } from "./BoarderWrite.types";
 import { Modal } from "antd";
-import { IMutation } from "../../../../../../class/src/commons/types/generated/types";
 import {
+  IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
 } from "../../../../commons/types/generated/types";

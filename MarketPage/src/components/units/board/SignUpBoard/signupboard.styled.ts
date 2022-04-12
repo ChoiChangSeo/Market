@@ -90,6 +90,5 @@ export const ErrorMsg = styled.div`
     height: 1%;
     margin-left: 20%;
     margin-bottom: 3%;
-    font-size: 5px;
     color: red;
 `

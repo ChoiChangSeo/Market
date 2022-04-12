@@ -24,18 +24,18 @@ export const LoginWrapper = styled.div`
 `
 export const Email = styled.input`
     width: 80%;
-    height: 18%;
-    margin-bottom: 10%;
+    height: 25%;
+    margin-bottom: 1%;
     border: 1px solid lightgray;
     border-radius: 10px;
     background-color: transparent;
     color: gray;
 `
-export 
-const Password = styled.input`
+
+export const Password = styled.input`
     width: 80%;
-    height: 18%;
-    margin-bottom: 10%;
+    height: 25%;
+    margin-bottom: 5%;
     border: 1px solid lightgray;
     border-radius: 10px;
     background-color: transparent;
@@ -43,7 +43,7 @@ const Password = styled.input`
 `
 export const LoginButton = styled.button`
     width: 80%;
-    height: 18%;
+    height: 25%;
     margin-bottom: 10%;
     border-radius: 10px;
     background-color: gray;
@@ -79,4 +79,11 @@ export const Mark = styled.div`
     margin: 0% 3% 0% 3%;
     border: none;
     border-left: 1px solid gray;
+`
+export const ErrorMsg = styled.div`
+    width: 100%;
+    height: 5%;
+    margin-left: 20%;
+    margin-bottom: 3%;
+    color: red;
 `

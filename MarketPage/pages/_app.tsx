@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { createUploadLink } from "apollo-upload-client";
 import { RecoilRoot } from 'recoil';
+import 'antd/dist/antd.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
