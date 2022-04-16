@@ -1,29 +1,34 @@
-import styled from "@emotion/styled";
+import * as S from '../Header/header.presenter'
+import { useRouter } from 'next/router';
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../store";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  height: 90px;
-  background-color: black;
-`;
-const EarthImg = styled.img``;
 
-const EarthFont = styled.div`
-  color: white;
-  font-size: 45px;
-`;
 
 export default function HeaderLayout() {
+  const router = useRouter()
+  const [accessToken] = useRecoilState(accessTokenState)
+  
+  const onClickMoveLogin = () => {
+    router.push('/Login')
+  }
+
+  const onClickMoveSignUp = () => {
+    router.push('/SignUp')
+  }
   return (
-    <Wrapper>
-      <EarthImg
-        src="/landing/maverickslogo.png"
-        width={130}
-        height={80}
-      ></EarthImg>
-      <EarthFont>Mavericks.Fan.Page</EarthFont>
-    </Wrapper>
+    <S.Wrapper>
+      <S.NavDiv>
+        <S.EarthImg
+        src="/mainlogo.png"
+        ></S.EarthImg>
+        <S.MainName>WithMarket</S.MainName>
+      </S.NavDiv>
+      <S.NavDiv1>
+        <S.Login onClick={onClickMoveLogin}>{accessToken? "오잉" : "로그인"}</S.Login>
+        <S.Mark></S.Mark>
+        <S.SignUp onClick={onClickMoveSignUp}>회원가입</S.SignUp>
+      </S.NavDiv1>
+    </S.Wrapper>
   );
 }

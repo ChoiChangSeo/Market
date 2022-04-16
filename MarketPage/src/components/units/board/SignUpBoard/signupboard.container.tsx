@@ -4,7 +4,19 @@ import { emailState , nameState,passwordState,checkPasswordState,emailErrorState
 import { ChangeEvent} from 'react';
 import { Modal } from "antd";
 import 'antd/dist/antd.css'
+import { gql, useMutation } from '@apollo/client';
+import { useRouter } from "next/router";
 
+const CREATE_USER = gql`
+   mutation createUser($createUserInput:CreateUserInput!){
+        createUser(createUserInput:$createUserInput){
+            _id
+            email
+            name
+            picture
+        }
+    }
+`
 
 
 
@@ -17,6 +29,8 @@ export default function SignUpPageContainer(){
     const [,setNameError] = useRecoilState(nameErrorState)
     const [,setPasswordError] = useRecoilState(passwordErrorState)
     const [,setCheckPasswordError] = useRecoilState(checkPasswordErrorState)
+    const [createUser] = useMutation(CREATE_USER)
+    const router = useRouter()
 
     const onChangeEmail = (event : ChangeEvent<HTMLInputElement>) =>{
         setEmail(event.target.value)
@@ -43,7 +57,7 @@ export default function SignUpPageContainer(){
         }
     }
 
-    const onClickSignUp = () =>{
+    const onClickSignUp = async () =>{
         if(email === ""){
             setEmailError("이메일을 입력해주세요")
         }
@@ -69,6 +83,15 @@ export default function SignUpPageContainer(){
         if(password !== checkPassword){
             Modal.error({content : "비밀번호를 다시 확인해주세요"})
         }
+        try{
+        await createUser({
+            variables:{createUserInput :{email,password,name}}
+        })
+        Modal.success({content : "회원가입에 성공했습니다."})
+        router.push('/Login')
+    } catch(error){
+        Modal.error({content : "회원가입에 실패했습니다."})
+    }
     }
 
     return(

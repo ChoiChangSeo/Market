@@ -1,6 +1,10 @@
 
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
+import HeaderLayout from "./Header/header";
+import NavigationLayout from "./Navigation/navigation";
+import BannerLayout from "./Banner/banner";
+import { useRouter } from "next/router";
 
 const Body = styled.div`
   display: flex;
@@ -12,16 +16,20 @@ interface LayOutPageProps {
   children: ReactNode;
 }
 
-// const HIDDEN = ["/"];
+const HIDDEN = ["/Login" , "/SignUp"];
 
 export default function LayOutPage(props: LayOutPageProps) {
-  // const router = useRouter();
-  // const isHidden = HIDDEN.includes(router.asPath);
+  const router = useRouter();
+  const isHidden = HIDDEN.includes(router.asPath);
   return (
     <>
-      {/* <HeaderLayout />
+      {!isHidden &&
+      <>
+      <HeaderLayout />
+      <BannerLayout />
       <NavigationLayout />
-      <BannerLayout /> */}
+      </>
+    }
       <Body>{props.children}</Body>
     </>
   );

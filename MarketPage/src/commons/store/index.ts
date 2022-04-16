@@ -39,3 +39,8 @@ export const checkPasswordErrorState = atom({
     key : "checkPasswordErrorState",
     default:""
 })
+
+export const accessTokenState = atom({
+    key: "accessTokenState",
+    default:""
+})

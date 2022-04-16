@@ -3,37 +3,46 @@ import Slider from "react-slick";
 
 export default function BannerLayout() {
   const Wrapper = styled.div`
-    height: 400px;
+  height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: 3%;
+    background-size: cover;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("/LoginBackground.jpg");
   `;
 
   const settings = {
-    dots: true,
     infinite: true,
-    speed: 500,
+    autoplay : true,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const Img1 = styled.img`
-    width: 100%;
-    height: 300px;
+
+  const Number1 = styled.div`
+    margin: 4% 0px 0px 37%;
+    font-weight: bold;
+    font-size: 100px;
+    color: yellowgreen;
   `;
-  const Img2 = styled.img`
-    width: 100%;
-    height: 300px;
+
+  const Number2 = styled.div`
+    margin: 4% 0px 10% 38%;
+    font-weight: bold;
+    font-size: 100px;
+    color: yellowgreen
   `;
 
   return (
     <Wrapper>
-      <div>
-        <Slider {...settings}>
-          <div>
-            <Img1 src="/landing/hometeam.jpeg" />
-          </div>
-          <div>
-            <Img2 src="/landing/dallashome.png" />
-          </div>
-        </Slider>
-      </div>
+      <Slider {...settings}>
+          <Number1>
+            With.Market
+          </Number1>
+          <Number2> 
+            여기 다있소
+          </Number2>
+      </Slider>
     </Wrapper>
   );
 }
