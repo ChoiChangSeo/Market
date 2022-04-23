@@ -11,12 +11,14 @@ interface IApolloSetting{
 export default function ApolloSetting(props:IApolloSetting){
     const [accessToken,setAccessToken] = useRecoilState(accessTokenState);
     const [,setUserInfo] = useRecoilState(userInfoState)
+
     useEffect(() => {
       const localstorageToken = localStorage.getItem("accessToken");
       const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
       setUserInfo(userInfo);
       setAccessToken(localstorageToken || "");
     }, []);
+    
     const uploadLink = createUploadLink({
         uri: "http://backend06.codebootcamp.co.kr/graphql",
         headers:{authorization : `Bearer ${accessToken}`}

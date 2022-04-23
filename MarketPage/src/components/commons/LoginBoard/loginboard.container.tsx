@@ -71,7 +71,7 @@ export default function LoginPageContainer(){
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
         Modal.success({content:"로그인에 성공하였습니다."})
-        router.push('/boards/new')
+        router.push('/boards')
         }catch(error){
         Modal.error({content:"로그인에 실패하였습니다."})
     }

@@ -88,9 +88,8 @@ const router = useRouter()
 const {register, handleSubmit, formState} = useForm({
     resolver:yupResolver(props.isEdit? nonSchema : schema),
     mode:"onChange",
-    defaultValues: {},
 })
-// console.log(userInfo)
+
 
 const onClickProductUpdate = async (data:IProduct) => {
     const currentFiles = JSON.stringify(myImage);
@@ -119,7 +118,6 @@ const onClickProductUpdate = async (data:IProduct) => {
 
 const onClickProductSubmit = async (data:IProduct) => {
     console.log(userInfo)
-    // console.log(data)
     try{
         const result = await createUseditem({
             variables: {

@@ -1,5 +1,4 @@
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '../../../../commons/store';
+
 import * as S from '../ProductDetail/productDetail.styles'
 
 interface IProductDetailPresenter{
@@ -8,13 +7,12 @@ interface IProductDetailPresenter{
     onClickDelete : () => void
 }
 export default function ProductDetailPresenter(props:IProductDetailPresenter){
-    const [userInfo] = useRecoilState(userInfoState);
     return(
         <S.Wrapper>
             <S.Header>
                 <S.UserImage src="/UserImg.png"/>
                 <S.UserDateWrapper>
-                    <S.UserName>{userInfo.name}</S.UserName>
+                    <S.UserName>{props.data?.fetchUseditem.name}</S.UserName>
                     <S.CreatedAt>{props.data?.fetchUseditem.createdAt}</S.CreatedAt>
                 </S.UserDateWrapper>
                 <S.Address src="/Map.png"/>
