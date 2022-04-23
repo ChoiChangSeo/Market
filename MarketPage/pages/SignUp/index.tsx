@@ -1,4 +1,4 @@
-import SignUpPageContainer from "../../src/components/units/board/SignUpBoard/signupboard.container";
+import SignUpPageContainer from "../../src/components/commons/SignUpBoard/signupboard.container";
 
 export default function SignUpPage(){
     

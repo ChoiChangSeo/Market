@@ -1,13 +1,12 @@
 import * as S from '../Navigation/navigation.presenter'
-import { MouseEvent } from "react";
 import { useRouter } from "next/router";
 
 
 export default function NavigationLayout() {
   const router = useRouter();
 
-  const onClickMoveBoardList = (event: MouseEvent<HTMLDivElement>) => {
-    router.push("/boards");
+  const onClickMoveBoardList = () => {
+    router.push("/boards/new");
   };
 
   return (

@@ -3,7 +3,6 @@ import Slider from "react-slick";
 
 export default function BannerLayout() {
   const Wrapper = styled.div`
-  height: 300px;
     width: 100%;
     background-repeat: no-repeat;
     background-position: 3%;
@@ -20,17 +19,17 @@ export default function BannerLayout() {
   };
 
   const Number1 = styled.div`
-    margin: 4% 0px 0px 37%;
+    margin: 6% 0% 0% 37%;
     font-weight: bold;
     font-size: 100px;
     color: yellowgreen;
   `;
 
   const Number2 = styled.div`
-    margin: 4% 0px 10% 38%;
+    margin: 6% 0% 10% 38%;
     font-weight: bold;
     font-size: 100px;
-    color: yellowgreen
+    color: yellowgreen;
   `;
 
   return (

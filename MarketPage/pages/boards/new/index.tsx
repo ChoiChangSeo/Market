@@ -1,11 +1,10 @@
 
-import BoarderWriterPage from '../../../src/components/units/board/write/BoarderWrite.components'
+import ProductNewContainer from "../../../src/components/units/board/ProductNew/productNew.container";
 
 
-export default function BoardPage() {
-    
-    
+export default function ProductNew() {
+
   return (
-    <BoarderWriterPage isEdit={false}/>
+    <ProductNewContainer isEdit={false} />
   )
 }

@@ -1,4 +1,4 @@
-import LoginPageContainer from "../../src/components/units/board/LoginBoard/loginboard.container";
+import LoginPageContainer from "../../src/components/commons/LoginBoard/loginboard.container";
 
 export default function LoginPage(){
     
