@@ -14,3 +14,19 @@ export const setMyImageState = atom({
     key : "setMyImageState",
     default:[]
 })
+
+
+export const setAddressState = atom({
+    key :"setAddressState",
+    default: ""
+})
+
+export const setZipcodeState = atom({
+    key :"setZipcodeState",
+    default: ""
+})
+
+export const setAddressDetail = atom({
+    key :"setAddressDetail",
+    default: ""
+})

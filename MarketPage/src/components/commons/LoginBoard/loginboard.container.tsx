@@ -1,9 +1,7 @@
 import LoginPagePresenter from "./loginboard.presenter";
-import { useRecoilState } from "recoil";
-import { accessTokenState, userInfoState} from "../../../commons/store";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { gql, useApolloClient, useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
@@ -15,15 +13,6 @@ const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
       accessToken
-    }
-  }
-`;
-
-const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn {
-    fetchUserLoggedIn {
-      email
-      name
     }
   }
 `;
@@ -41,35 +30,16 @@ interface ILogin{
 
 export default function LoginPageContainer(){
     const [loginUser] = useMutation(LOGIN_USER)
-    const [, setUserInfo] = useRecoilState(userInfoState);
     const router = useRouter()
-    const [,setAccessToken] = useRecoilState(accessTokenState)
     const {register, handleSubmit, formState} = useForm({
         resolver:yupResolver(schema)
     })
-    const client = useApolloClient();
 
     const onClickLogin = async (data:ILogin) =>{
         try{
-        const result = await loginUser({
+        await loginUser({
             variables:{...data}
         })
-        const accessToken = result.data.loginUser.accessToken
-        setAccessToken(accessToken)
-
-        const resultUserInfo = await client.query({
-            query: FETCH_USER_LOGGED_IN,
-            context: {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            },
-          });
-        const userInfo = resultUserInfo.data.fetchUserLoggedIn;
-        setAccessToken(accessToken);
-        setUserInfo(userInfo);
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
         Modal.success({content:"로그인에 성공하였습니다."})
         router.push('/boards')
         }catch(error){

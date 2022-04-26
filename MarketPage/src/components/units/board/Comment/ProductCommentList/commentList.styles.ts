@@ -4,10 +4,16 @@ export const Wrapper = styled.div`
     width: 1200px;
     height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-top: 20px;
     border: none;
     border-bottom: 1px solid #BDBDBD;
+`
+export const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `
 export const UserImg = styled.img`
     width: 20px;
@@ -50,8 +56,18 @@ export const ReplyEdit = styled.img`
 export const ReplyDel = styled.img`
     width: 20px;
     height: 20px;
+    margin-right: 10px;
+`
+export const Reply = styled.img`
+    width: 20px;
+    height: 20px;
 `
 export const UserInfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
+`
+export const ReplyWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 `

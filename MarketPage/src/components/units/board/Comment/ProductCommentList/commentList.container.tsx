@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { IQuery, IQueryFetchUseditemQuestionsArgs } from '../../../../commons/types/generated/types';
+import { IQuery, IQueryFetchUseditemQuestionsArgs } from '../../../../../commons/types/generated/types';
 import CommentListPresenter from './commentList.presenter';
 
 const FETCH_USEDITEM_QUESTION = gql`
@@ -19,10 +19,12 @@ const FETCH_USEDITEM_QUESTION = gql`
 `
 
 export default function CommentListContainer(){
-    const router =useRouter()
+    const router = useRouter()
     const {data,fetchMore} = useQuery<Pick<IQuery,"fetchUseditemQuestions">,IQueryFetchUseditemQuestionsArgs>(FETCH_USEDITEM_QUESTION,({
         variables:{useditemId:String(router.query.boardId)}
     }))
+
+
     const onLoadMore = () =>{
         if (!data) return;
     fetchMore({

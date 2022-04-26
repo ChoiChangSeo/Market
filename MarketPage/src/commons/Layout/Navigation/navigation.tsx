@@ -8,6 +8,13 @@ export default function NavigationLayout() {
   const onClickMoveBoardList = () => {
     router.push("/boards/new");
   };
+  const onClickMoveMyPage = () => {
+    router.push("/boards/mypage");
+  };
+
+  const onClickMoveProductList = () => {
+    router.push("/boards")
+  }
 
   return (
     <>
@@ -15,9 +22,9 @@ export default function NavigationLayout() {
         <S.Mark></S.Mark>
         <S.Board onClick={onClickMoveBoardList}>상품등록</S.Board>
         <S.Mark></S.Mark>
-        <S.Market>중고마켓</S.Market>
+        <S.Market onClick={onClickMoveProductList}>중고마켓</S.Market>
         <S.Mark></S.Mark>
-        <S.MyPage>마이페이지</S.MyPage>
+        <S.MyPage onClick={onClickMoveMyPage}>마이페이지</S.MyPage>
         <S.Mark></S.Mark>
       </S.Wrapper>
     </>

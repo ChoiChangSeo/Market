@@ -37,13 +37,7 @@ export const RemarksInput = styled.input`
     border: 1px solid #BDBDBD;
     box-sizing: border-box;   
 `
-export const ProductDetail = styled.textarea`
-    width: 996px;
-    height: 320px;
-    border: 1px solid #BDBDBD;
-    resize: none;
-    margin-bottom: 80px;
-`
+
 export const ProductPriceTagWrapper = styled.div`
     margin-bottom: 40px;
 `
@@ -77,34 +71,13 @@ export const LocationFont = styled.div`
     font-weight: 500;
     font-size: 16px;
 `
-export const LocationMap = styled.img`
-    width: 384px;
-    height: 252px;
+export const LocationMap = styled.div`
     border: 1px solid gray;
 `
 export const GPSWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
-`
-export const LatiLongWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-`
-export const Latitude = styled.button`
-    width: 108px;
-    height: 52px;
-    margin-right: 56px;
-    background: #FFFFFF;
-    border: 1px solid #BDBDBD;
-    box-sizing: border-box;
-`
-export const Longitude = styled.button`
-    width: 108px;
-    height: 52px;
-    background: #FFFFFF;
-    border: 1px solid #BDBDBD;
-    box-sizing: border-box;
 `
 export const AddressWrapper = styled.div`
     display: flex;
@@ -130,6 +103,13 @@ export const AddressDetailInput = styled.input`
     border: 1px solid #BDBDBD;
     box-sizing: border-box;     
 `
+
+export const AddressButton = styled.button`
+    width: 100px;
+    height: 50px;
+    margin-top: 20px;
+`
+
 export const ImageWrapper = styled.div`
     margin-bottom: 40px;
 `

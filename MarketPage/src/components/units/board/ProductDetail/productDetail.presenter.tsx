@@ -1,4 +1,5 @@
-
+import Dompurify from "dompurify";
+import KakaoMap2 from "../../../commons/Map/DetailMap";
 import * as S from '../ProductDetail/productDetail.styles'
 
 interface IProductDetailPresenter{
@@ -31,16 +32,22 @@ export default function ProductDetailPresenter(props:IProductDetailPresenter){
                     </S.LikeWrapper>
                 </S.BodyHeader>
                 <S.Images>
-                    {props.data?.fetchUseditem.images.map((el:any ,index:number)=>(
+                    {props.data?.fetchUseditem.images?.filter((el:string)=>el)
+                    .map((el:any ,index:number)=>(
                         <div key={index}>
                             <S.Img src={`https://storage.googleapis.com/${el}`}/>
                         </div>
                     ))}
                 </S.Images>
-                <S.Contents>{props.data?.fetchUseditem.contents}</S.Contents>
+                {typeof window !== "undefined" ? (
+                <S.Contents dangerouslySetInnerHTML={{__html: Dompurify.sanitize(props.data?.fetchUseditem.contents)}}>
+                </S.Contents>
+                ):(<S.Contents></S.Contents>)}
                 <S.Tags>{props.data?.fetchUseditem.tags}</S.Tags>
                 <S.Mark></S.Mark>
-                <S.Map></S.Map>
+                <S.Map>
+                    <KakaoMap2 data={props.data}/>
+                </S.Map>
                 <S.Mark></S.Mark>
             </S.BodyWrapper>
             <S.FooterWrapper>

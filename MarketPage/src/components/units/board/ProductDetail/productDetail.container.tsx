@@ -14,6 +14,13 @@ const FETCH_USED_ITEM = gql`
             tags
             images
             createdAt
+            seller{
+                email
+            }
+            useditemAddress{
+                address
+                addressDetail
+            }
         }
     }
 `
