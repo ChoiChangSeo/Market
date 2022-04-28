@@ -36,7 +36,7 @@ export default function SignUpPresenter(props:ISignUpPresenterProps){
                 </S.InputWrapper>
                 <S.PasswordCheck  {...props.register("checkPassword")} placeholder="비밀번호를 입력해주세요"></S.PasswordCheck>
                 <S.ErrorMsg>{props.formState.errors.checkPassword?.message}</S.ErrorMsg>
-                <S.Button isActive={props.formState.isValid}>회원가입</S.Button>
+                <S.Button>회원가입</S.Button>
                 </form>
             </S.SignUpWrapper>
         </S.Wrapper>

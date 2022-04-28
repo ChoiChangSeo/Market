@@ -1,11 +1,17 @@
 import Dompurify from "dompurify";
-import KakaoMap2 from "../../../commons/Map/DetailMap";
+import { MouseEvent } from "react";
+import KakaoMap from "../../../commons/Map";
+// import KakaoMap2 from "../../../commons/Map/DetailMap";
+
 import * as S from '../ProductDetail/productDetail.styles'
 
 interface IProductDetailPresenter{
     data?:any
+    UserData?:any
     onClickEdit : () => void
     onClickDelete : () => void
+    onClickBuy : () => void
+    onClickPick: (event:MouseEvent<HTMLImageElement>) => void
 }
 export default function ProductDetailPresenter(props:IProductDetailPresenter){
     return(
@@ -27,8 +33,8 @@ export default function ProductDetailPresenter(props:IProductDetailPresenter){
                         <S.Price>{props.data?.fetchUseditem.price}원</S.Price>
                     </S.ProductNameWrapper>
                     <S.LikeWrapper>
-                        <S.Like src="/Like.png"/>
-                        <S.LikeNumber></S.LikeNumber>
+                        <S.Like onClick={props.onClickPick} src="/Like.png"/>
+                        <S.LikeNumber>{props.data?.fetchUseditem.pickedCount}</S.LikeNumber>
                     </S.LikeWrapper>
                 </S.BodyHeader>
                 <S.Images>
@@ -46,14 +52,18 @@ export default function ProductDetailPresenter(props:IProductDetailPresenter){
                 <S.Tags>{props.data?.fetchUseditem.tags}</S.Tags>
                 <S.Mark></S.Mark>
                 <S.Map>
-                    <KakaoMap2 data={props.data}/>
+                    <KakaoMap data={props.data}/>
                 </S.Map>
                 <S.Mark></S.Mark>
             </S.BodyWrapper>
             <S.FooterWrapper>
                 <S.ListButton>목록으로</S.ListButton>
-                <S.EditButton onClick={props.onClickEdit}>수정하기</S.EditButton>
+                {props.data?.fetchUseditem.seller.email === props.UserData?.fetchUserLoggedIn.email?
+                <>
+                <S.EditButton onClick={props.onClickEdit}>수정하기</S.EditButton>  
                 <S.DeleteButton onClick={props.onClickDelete}>삭제하기</S.DeleteButton>
+                </> : <S.BuyButton onClick={props.onClickBuy}>구매하기</S.BuyButton>
+                } 
             </S.FooterWrapper>
             <S.Mark></S.Mark>
         </S.Wrapper>

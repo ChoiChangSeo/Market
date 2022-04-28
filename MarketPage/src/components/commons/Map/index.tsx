@@ -8,17 +8,26 @@ declare const window: typeof globalThis & {
 interface IKakaoMap {
   address? : string
   data?:any
-  isEdit?:boolean
 }
 
 export default function KakaoMap(props:IKakaoMap) {
   useEffect(() => {
     const script = document.createElement("script");
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=be1e111a42e092c10d6aa67ada7b9ed6&autoload=false&libraries=services"; // 물음표 뒤에 이어붙이는?가 쿼리스트링인데 객체로 보내고 싶을때 사용
+    script.src ="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4f1c0cfda4d108dc2c70fc9ed78b3b7&libraries=services&autoload=false";
     document.head.appendChild(script);
 
     script.onload = () => {
+      if(!props.address && !props.data){
+        return window.kakao.maps.load(function () {
+          const container = document.getElementById("map");
+          const options = {
+            center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+            level: 3,
+          };
+          const map = new window.kakao.maps.Map(container, options);
+          return map
+        })
+      }
       window.kakao.maps.load(function () {
         const container = document.getElementById("map");
         const options = {
@@ -43,8 +52,8 @@ export default function KakaoMap(props:IKakaoMap) {
           } 
       });  
       });
-    };
-  }, [props.address || props.data]);
+    }
+  }, [props.address && props.data]);
  
 
   return (

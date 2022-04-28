@@ -59,7 +59,7 @@ const {register, handleSubmit} = useForm({
 
 const onClickSubmitComment = async(data:any) =>{
     try{
-    const result = await createUseditemQuestion({
+       await createUseditemQuestion({
         variables:{useditemId:router.query.boardId,
             createUseditemQuestionInput:{
             ...data
@@ -69,7 +69,6 @@ const onClickSubmitComment = async(data:any) =>{
             variables:{ useditemId : router.query.boardId}
         }]
     })
-    console.log(result)
     Modal.success({content:"게시글 등록에 성공했습니다."})
 }catch(error:any){
     Modal.error({content:error.message})

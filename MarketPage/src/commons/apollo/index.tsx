@@ -1,7 +1,7 @@
 import { ApolloClient, ApolloLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { useRecoilState } from "recoil";
-import { accessTokenState, userInfoState } from "../store";
+import { accessTokenState } from "../store";
 import { onError } from "@apollo/client/link/error";
 import { ReactNode, useEffect } from "react";
 import { getAccessToken } from "../libraries/getAccessToken";
@@ -12,11 +12,8 @@ interface IApolloSetting{
 
 export default function ApolloSetting(props:IApolloSetting){
     const [accessToken,setAccessToken] = useRecoilState(accessTokenState);
-    const [,setUserInfo] = useRecoilState(userInfoState)
 
     useEffect(() => {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-      setUserInfo(userInfo)
       getAccessToken().then((newAccessToken) => {
         setAccessToken(newAccessToken);
       });
@@ -25,14 +22,16 @@ export default function ApolloSetting(props:IApolloSetting){
     const errorLink = onError(({ graphQLErrors, operation, forward }) => {
       if (graphQLErrors) {
         for (const err of graphQLErrors) {
+
           if (err.extensions.code === "UNAUTHENTICATED") {
+
             getAccessToken().then((newAccessToken) => {
               setAccessToken(newAccessToken);
               operation.setContext({
                 headers: {
                   ...operation.getContext().headers,
                   Authorization: `Bearer ${newAccessToken}`,
-                },
+                } 
               });
               return forward(operation);
             });
@@ -40,6 +39,7 @@ export default function ApolloSetting(props:IApolloSetting){
         }
       }
     });
+  
 
 
     const uploadLink = createUploadLink({

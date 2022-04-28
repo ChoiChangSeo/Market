@@ -19,7 +19,7 @@ export default function LoginPagePresenter(props:ILoginPagePresenterProps){
                 <S.ErrorMsg>{props.formState.errors.email?.message}</S.ErrorMsg>
                 <S.Password {...props.register("password")} placeholder="비밀번호를 입력해주세요"></S.Password>
                 <S.ErrorMsg>{props.formState.errors.password?.message}</S.ErrorMsg>
-                <S.LoginButton isActive={props.formState.isValid}>로그인하기</S.LoginButton>
+                <S.LoginButton>로그인하기</S.LoginButton>
                 </form>
                 <S.MarkLine></S.MarkLine>
                 <S.LoginNavWrapper>

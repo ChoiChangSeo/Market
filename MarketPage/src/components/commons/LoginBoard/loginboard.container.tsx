@@ -5,8 +5,8 @@ import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
-// import {withAuth} from '../../../../commons/HOCS/withAuth';
-
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../commons/store";
 
 
 const LOGIN_USER = gql`
@@ -30,6 +30,7 @@ interface ILogin{
 
 export default function LoginPageContainer(){
     const [loginUser] = useMutation(LOGIN_USER)
+    const [, setAccessToken] = useRecoilState(accessTokenState);
     const router = useRouter()
     const {register, handleSubmit, formState} = useForm({
         resolver:yupResolver(schema)
@@ -37,9 +38,12 @@ export default function LoginPageContainer(){
 
     const onClickLogin = async (data:ILogin) =>{
         try{
-        await loginUser({
+        const result = await loginUser({
             variables:{...data}
         })
+        const accessToken = result.data.loginUser.accessToken;
+        setAccessToken(accessToken);
+        localStorage.setItem("refreshToken", "true");
         Modal.success({content:"로그인에 성공하였습니다."})
         router.push('/boards')
         }catch(error){

@@ -41,6 +41,9 @@ export const RemarksInput = styled.input`
 export const ProductPriceTagWrapper = styled.div`
     margin-bottom: 40px;
 `
+export const Span = styled.span`
+    background-color: orange;
+`
 export const ProductPriceInput = styled.input`
     width: 996px;
     height: 52px;

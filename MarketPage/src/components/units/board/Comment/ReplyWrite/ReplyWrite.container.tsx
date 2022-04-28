@@ -61,7 +61,7 @@ export default function ReplyWriteContainer(props:IReplyWriteContainer){
 
     const ReplySubmit = async(data:any) => {
         try{
-            const result = await createUseditemQuestionAnswer({
+                await createUseditemQuestionAnswer({
                 variables:{createUseditemQuestionAnswerInput:{
                     ...data
                 }, useditemQuestionId: props.el._id},
@@ -71,7 +71,6 @@ export default function ReplyWriteContainer(props:IReplyWriteContainer){
                 }]
             })
             props.setReplyIsSub?.(false)
-            console.log(result)
             Modal.success({content:"댓글달기에 성공하였습니다."})
         }catch(error){
 

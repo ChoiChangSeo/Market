@@ -1,5 +1,17 @@
 import styled from "@emotion/styled"
 
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    padding: 50px 50px 50px 50px;
+`
+
+export const TodayColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+`
+
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
@@ -43,4 +55,28 @@ export const Price = styled.div`
     font-family: 'Noto Sans CJK KR';
     font-weight: 700;
     font-size: 24px;
+`
+export const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const TodayImg = styled.img`
+    width: 100px;
+    height: 100px;
+`
+export const TodayName = styled.div`
+    font-family: 'Noto Sans CJK KR';
+    font-weight: 700;
+    font-size: 15px;
+`
+export const TodayPrice = styled.div`
+    font-family: 'Noto Sans CJK KR';
+    font-weight: 700;
+    font-size: 15px;
+`
+
+export const StyleScroll = styled.div`
+    height: 1000px;
+    overflow: auto;
 `

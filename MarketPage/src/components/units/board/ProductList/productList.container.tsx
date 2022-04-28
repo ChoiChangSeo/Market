@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client"
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import ProductListPresenter from "./productList.presenter";
-import { IQuery, IQueryFetchUseditemsArgs } from '../../../../commons/types/generated/types';
+import { IQuery, IQueryFetchUseditemsArgs, IBoard } from '../../../../commons/types/generated/types';
 
 const FETCH_USED_ITEMS = gql`
     query fetchUseditems($page:Int){
@@ -20,6 +20,14 @@ const FETCH_USED_ITEMS = gql`
 
 export default function ProductListContainer(){
 const {data,fetchMore} = useQuery<Pick<IQuery,"fetchUseditems">,IQueryFetchUseditemsArgs>(FETCH_USED_ITEMS)
+const [basketItems, setBasketItems] = useState([]);
+
+const newDate = new Date();
+const yyyy = newDate.getFullYear();
+const mm = newDate.getMonth() + 1;
+const dd = newDate.getDate();
+const Today = `${yyyy}-${mm}-${dd}`
+
 const router = useRouter()
 
 const MoveToDetail = (event:MouseEvent<HTMLImageElement>) =>{
@@ -42,7 +50,30 @@ fetchMore({
   },
 });
 }
+
+const onClickBasket = (el:IBoard) => (event:MouseEvent<HTMLDivElement>) => {
+  const baskets = JSON.parse(localStorage.getItem(Today) || "[]");
+
+  const temp = baskets.filter((basketEl: IBoard) => basketEl._id === el._id);
+  if (temp.length === 1) {
+    return alert("이미 담으신 게시글입니다.");
+  }
+  const { __typename, ...rest } = el;
+  baskets.push(rest);
+  localStorage.setItem(Today, JSON.stringify(baskets)); 
+}
+
+useEffect(() => {
+  const Day = JSON.parse(localStorage.getItem(Today) || "[]");
+  setBasketItems(Day);
+},[]);
+
  return(
-    <ProductListPresenter data={data} onLoadMore={onLoadMore} MoveToDetail={MoveToDetail}/>
+    <ProductListPresenter 
+    data={data} 
+    onLoadMore={onLoadMore} 
+    MoveToDetail={MoveToDetail}
+    onClickBasket = {onClickBasket}
+    basketItems={basketItems}/>
  )
 }

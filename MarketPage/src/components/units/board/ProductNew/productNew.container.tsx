@@ -5,7 +5,7 @@ import * as yup from "yup"
 import { useMutation , gql } from '@apollo/client';
 import { Modal } from "antd";
 import useAuth from "../../../../commons/HOCS/useAuth";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import { useRouter } from "next/router";
 
 
@@ -50,7 +50,6 @@ const schema = yup.object({
     remarks:yup.string().required("상품제목 요약은 필수입력입니다."),
     contents:yup.string().required("상품상세정보는 필수입력입니다."),
     price : yup.number().required("상품가격은 필수입력입니다."),
-    tags: yup.string(),
     useditemAddress:yup.object({
         address:yup.string(),
         addressDetail:yup.string()
@@ -62,7 +61,6 @@ const nonSchema = yup.object({
     remarks:yup.string(),
     contents:yup.string(),
     price : yup.number(),
-    tags: yup.string(),
     useditemAddress:yup.object({
         address:yup.string(),
         addressDetail:yup.string()
@@ -106,6 +104,20 @@ const [updateUseditem] = useMutation(UPDATE_USED_ITEM)
 const [isModalVisible, setIsModalVisible] = useState(false);
 const [myImage,setMyImage] = useState<string[]>([])
 const router = useRouter()
+const [hasArr, setHashArr] = useState<string[]>([]);
+
+const onKeyUpHash = (event:any) => {
+  if (event.keyCode === 32 && event.target.value !== " ") {
+    setHashArr([...hasArr, "#" + event.target.value]);
+    event.target.value = "";
+  }
+};
+
+const DeleteTags = (event:MouseEvent<HTMLSpanElement>) =>  {
+    hasArr.splice(Number((event.target as HTMLSpanElement).id),1)
+    setHashArr([...hasArr])
+}
+
 const {register, handleSubmit, formState, trigger, setValue, reset, getValues} = useForm({
     resolver:yupResolver(props.isEdit? nonSchema : schema),
     mode:"onChange",
@@ -142,7 +154,7 @@ const onClickProductUpdate = async (data:IUpdate) => {
     if(data.remarks) updateUseditemInput.remarks = data.remarks
     if(data.contents) updateUseditemInput.contents = data.contents
     if(data.price) updateUseditemInput.price = data.price
-    if(data.tags) updateUseditemInput.tags = data.tags
+    if(hasArr) updateUseditemInput.tags = hasArr
     if(isChangedFiles) updateUseditemInput.images = myImage
     if(data.useditemAddress?.address || data.useditemAddress?.addressDetail){
         updateUseditemInput.useditemAddress={}
@@ -165,31 +177,30 @@ const onClickProductUpdate = async (data:IUpdate) => {
 }
 
 const onClickProductSubmit = async (data:IProduct) => {
-    console.log(data)
-    
     try{
         const result = await createUseditem({
             variables: {
                 createUseditemInput:{
-                    ...data,images:myImage,
+                    ...data,images:myImage,tags:hasArr
                 }
             }
         })
-
-        console.log(result)
         Modal.success({ content: "게시물이 작성되었습니다." });
         router.push(`/boards/${result.data?.createUseditem._id}`)
     }catch(error:any){
         Modal.error({ content: error.message });
     }
 }   
-    useEffect(()=>{
-        console.log("a")
-    },[address])
 
     useEffect(()=>{
-        reset({ contents: props.data?.fetchUseditem.contents });
+        reset({ contents: props.data?.fetchUseditem?.contents });
     },[props.data])
+
+    useEffect(() => {
+        if (props.data?.fetchUseditem?.tags?.length) {
+          setHashArr([...props.data?.fetchUseditem?.tags]);
+        }
+      }, [props.data]);
     
     return(
         <ProductNewPresenter 
@@ -208,6 +219,9 @@ const onClickProductSubmit = async (data:IProduct) => {
         setValue={setValue}
         handleSubmit={handleSubmit} 
         formState={formState}
-        address={address}/>
+        address={address}
+        onKeyUpHash={onKeyUpHash}
+        hasArr={hasArr}
+        DeleteTags={DeleteTags}/>
     )
 }

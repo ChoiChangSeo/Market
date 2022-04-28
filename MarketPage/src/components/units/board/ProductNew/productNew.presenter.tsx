@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { Modal } from 'antd';
 import DaumPostcode from 'react-daum-postcode';
 import KakaoMap from '../../../commons/Map';
+import { MouseEvent } from 'react';
 
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -28,6 +29,9 @@ interface IProductNewPresenter{
     myImage: string[]
     setMyImage : any
     address:string
+    hasArr:string[]
+    onKeyUpHash: (event:any) => void
+    DeleteTags: (event:MouseEvent<HTMLSpanElement>) => void
 }
 
 export default function ProductNewPresenter (props:IProductNewPresenter){
@@ -43,20 +47,25 @@ export default function ProductNewPresenter (props:IProductNewPresenter){
             <ReactQuill onChange={props.onChangeContents} style={{margin:"0px 0px 80px 0px" ,width:"996px", height:"320px" , border:"1px solid #BDBDBD"}} value={props.getValues("contents") || ""} placeholder="상품을 설명해주세요"/>
             <S.ProductPriceTagWrapper>
                 <S.ProductPriceInput type="number" defaultValue={props.data?.fetchUseditem.price} {...props.register("price")} placeholder="판매 가격을 입력해주세요"/>
-                <S.ProductTag defaultValue={props.data?.fetchUseditem.tags} {...props.register("tags")} placeholder='#태그 #태그 #태그'/>
+                <div>
+          {props.hasArr.map((el:any, idex:any) => (
+            <S.Span onClick={props.DeleteTags} id={idex} key={idex}>{el}</S.Span>
+          ))}
+        </div>
+                <S.ProductTag onKeyUp={props.onKeyUpHash} id="tags" placeholder='#태그 #태그 #태그'/>
             </S.ProductPriceTagWrapper>
             <S.LocationWrapper>
                 <S.Location>
                     <S.LocationFont>거래위치</S.LocationFont>
                     <S.LocationMap>
-                        <KakaoMap data={props.data} isEdit={props.isEdit} address={props.address}/>
+                        <KakaoMap data={props.data} address={props.address}/>
                     </S.LocationMap>
                 </S.Location>
                 <S.GPSWrapper>
                     <S.AddressWrapper>
                         <S.AddressFont>주소</S.AddressFont>
-                        <S.AddressInput readOnly onChange={props.setValue("useditemAddress.address",props.address)} value={props.address? props.address : props.data?.fetchUseditem.useditemAddress?.address}/>
-                        <S.AddressDetailInput {...props.register("useditemAddress.addressDetail")} defaultValue={props.data?.fetchUseditem.useditemAddress?.addressDetail}/>
+                        <S.AddressInput readOnly onChange={props.setValue("useditemAddress.address",props.address)} value={props.address? props.address : props.data?.fetchUseditem.useditemAddress?.address || ""}/>
+                        <S.AddressDetailInput {...props.register("useditemAddress.addressDetail")} defaultValue={props.data?.fetchUseditem.useditemAddress?.addressDetail || ""}/>
                         <S.AddressButton type='button' onClick={props.showModal}>주소찾기</S.AddressButton>
                     </S.AddressWrapper>
                 </S.GPSWrapper>

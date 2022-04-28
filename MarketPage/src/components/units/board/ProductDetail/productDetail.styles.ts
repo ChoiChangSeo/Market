@@ -128,6 +128,17 @@ export const DeleteButton = styled.button`
     font-size: 16px;
     cursor: pointer;
 `
+export const BuyButton = styled.button`
+    width: 179px;
+    height: 52px;
+    border: none;
+    background: yellow;
+    font-family: 'Noto Sans CJK KR';;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+`
+
 export const Price = styled.div`
     font-family: 'Noto Sans CJK KR';
     font-weight: 700;
