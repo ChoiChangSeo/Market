@@ -27,7 +27,7 @@ export default function KakaoMap(props:IKakaoMap) {
           const map = new window.kakao.maps.Map(container, options);
           return map
         })
-      }
+      }else{
       window.kakao.maps.load(function () {
         const container = document.getElementById("map");
         const options = {
@@ -45,7 +45,7 @@ export default function KakaoMap(props:IKakaoMap) {
                   position: coords
               });
               const infowindow = new window.kakao.maps.InfoWindow({
-                  content: `<div style="width:150px;text-align:center;padding:6px 0;">${props.address? props.address : props.data?.fetchUseditem.useditemAddress?.address}</div>`
+                  content: `<div style="width:150px;text-align:center;padding:6px 0;">거래장소 </br> ${props.address? props.address : props.data?.fetchUseditem.useditemAddress?.address}</div>`
               });
               infowindow.open(map, marker);
               map.setCenter(coords);
@@ -53,7 +53,8 @@ export default function KakaoMap(props:IKakaoMap) {
       });  
       });
     }
-  }, [props.address && props.data]);
+    }
+  }, [props.address || props.data]);
  
 
   return (

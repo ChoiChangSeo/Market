@@ -2,22 +2,32 @@ import * as S from '../Header/header.presenter'
 import { useRouter } from 'next/router';
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../store";
-import { gql, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery} from '@apollo/client';
+import { IMutation } from '../../types/generated/types';
+
 
 const FETCH_USER = gql`
   query fetchUserLoggedIn{
     fetchUserLoggedIn{
       name
+      email
     }
+  }
+`
+const LOGOUT = gql`
+  mutation logoutUser{
+    logoutUser
   }
 `
 
 export default function HeaderLayout() {
   const router = useRouter()
-  const [accessToken] = useRecoilState(accessTokenState)
+  const [accessToken,setAccessToken] = useRecoilState(accessTokenState)
+  const [logoutUser] = useMutation<Pick<IMutation,"logoutUser">>(LOGOUT)
+
   
   const {data} = useQuery(FETCH_USER)
-  console.log(data)
+
   
   const onClickMoveLogin = () => {
     router.push('/Login')
@@ -26,7 +36,14 @@ export default function HeaderLayout() {
   const onClickMoveSignUp = () => {
     router.push('/SignUp')
   }
-  const onClick = () => {}
+  const onClickLogOut = () => {
+    try {
+      logoutUser()
+      setAccessToken("")
+      }catch (error:any){
+      alert(error.message)
+  }
+}
   return (
     <S.Wrapper>
       <S.NavDiv>
@@ -36,9 +53,15 @@ export default function HeaderLayout() {
         <S.MainName>WithMarket</S.MainName>
       </S.NavDiv>
       <S.NavDiv1>
-        <S.Login onClick={accessToken? onClick : onClickMoveLogin}>{accessToken? `${data?.fetchUserLoggedIn.name}` : "로그인"}</S.Login>
+        <S.Login onClick={accessToken? undefined : onClickMoveLogin}>{accessToken? `${data?.fetchUserLoggedIn.name}` : "로그인"}</S.Login>
         <S.Mark></S.Mark>
-        <S.SignUp onClick={onClickMoveSignUp}>회원가입</S.SignUp>
+        <S.SignUp onClick={accessToken? undefined :onClickMoveSignUp}>{accessToken? `${data?.fetchUserLoggedIn.email}` :"회원가입"}</S.SignUp>
+        {accessToken &&
+        <>
+        <S.Mark></S.Mark>
+        <S.LogOut onClick={accessToken? onClickLogOut : undefined}>{accessToken? `로그아웃` :""}</S.LogOut>
+        </>
+        }  
       </S.NavDiv1>
     </S.Wrapper>
   );

@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation} from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Modal } from 'antd';
 import { useRouter } from 'next/router';
@@ -33,6 +33,7 @@ const FETCH_USEDITEM_QUESTION = gql`
   query fetchUseditemQuestions($useditemId: ID!){
     fetchUseditemQuestions(useditemId: $useditemId){
       _id
+      contents
     }
   }
 `
@@ -95,6 +96,6 @@ const onClickUpdateComment = async(data:any) => {
 }
 
     return(
-  <CommentWritePresenter isEdit={props.isEdit} register={register} handleSubmit={handleSubmit} onClickSubmitComment={onClickSubmitComment} onClickUpdateComment={onClickUpdateComment}/>
+  <CommentWritePresenter el={props.el} isEdit={props.isEdit} register={register} handleSubmit={handleSubmit} onClickSubmitComment={onClickSubmitComment} onClickUpdateComment={onClickUpdateComment}/>
     )
 }

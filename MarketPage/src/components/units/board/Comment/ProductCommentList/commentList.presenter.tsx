@@ -17,9 +17,9 @@ export default function CommentListPresenter(props:ICommentListPresenter){
           hasMore={true}
           useWindow={false}
         >
-    {props.data?.fetchUseditemQuestions.map((el:any) =>(
-    <CommentListItem key={el._id} el={el} />
-    ))}
+    {props.data?(props.data?.fetchUseditemQuestions.map((el:any) =>(
+    <CommentListItem data={props.data} key={el._id} el={el} />
+    ))):(<div></div>)}
         </InfiniteScroll>
     </>
     )

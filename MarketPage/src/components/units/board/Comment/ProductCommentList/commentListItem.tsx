@@ -2,13 +2,14 @@ import * as S from "./commentList.styles"
 import {getDate} from "../../../../../commons/libraries/utils"
 import CommentWriteContainer from "../ProductCommentWrite/commentWrite.container";
 import { MouseEvent, useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation} from '@apollo/client';
 import { useRouter } from "next/router";
 import ReplyWriteContainer from "../ReplyWrite/ReplyWrite.container";
 import ReplyListContainer from "../ReplyList/ReplyList.container";
 
 interface ICommentListItem{
     el:any
+    data?:any
 }
 
 const FETCH_USEDITEM_QUESTION = gql`
@@ -24,7 +25,7 @@ const DELETE_USEDITEM_QUESTION = gql`
     deleteUseditemQuestion(useditemQuestionId:$useditemQuestionId)
    }
 `
-
+ 
 export default function CommentListItem(props:ICommentListItem){
     const router = useRouter()
     const [isEdit,setIsEdit] = useState(false)

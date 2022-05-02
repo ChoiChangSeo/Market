@@ -3,6 +3,7 @@ import * as S from "../ProductCommentWrite/commentWrite.styles"
 interface ICommentWritePresenter{
     register:any
     handleSubmit:any
+    el?:any
     onClickSubmitComment: (data:any) => void
     onClickUpdateComment: (data:any) => void
     isEdit?:boolean
@@ -11,11 +12,11 @@ interface ICommentWritePresenter{
 export default function CommentWritePresenter(props:ICommentWritePresenter){
     return(
         <S.Wrapper>
-            <form onSubmit={props.isEdit?   props.handleSubmit(props.onClickUpdateComment):props.handleSubmit(props.onClickSubmitComment)}>
+            <form onSubmit={props.isEdit? props.handleSubmit(props.onClickUpdateComment):props.handleSubmit(props.onClickSubmitComment)}>
             <S.QuestionWrapper>
                 <S.QuestionFont>{props.isEdit? "수정하기":"문의하기"}</S.QuestionFont>
             </S.QuestionWrapper>
-            <S.QuestionTextArea {...props.register("contents")}/>
+            <S.QuestionTextArea defaultValue={props.el?.contents} {...props.register("contents")}/>
             <S.QuestionSubmitWrapper>
                 <S.CommentLength>0/100</S.CommentLength>
                 <S.SubmitButton>{props.isEdit? "수정하기":"문의하기"}</S.SubmitButton>

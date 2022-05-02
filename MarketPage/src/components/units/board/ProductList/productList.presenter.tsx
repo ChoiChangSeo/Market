@@ -8,6 +8,7 @@ interface IProductListPresenter{
     MoveToDetail: (event:MouseEvent<HTMLImageElement>) => void
     onLoadMore: () => void
     onClickBasket : (el:any) =>(event:MouseEvent<HTMLDivElement>) => void
+    DeleteBasket : (event:MouseEvent<HTMLDivElement>) => void
 }
 
 export default function ProductListPresenter(props:IProductListPresenter){
@@ -18,7 +19,7 @@ export default function ProductListPresenter(props:IProductListPresenter){
      {props.basketItems.map((el:any)=>(
          <S.Column key={el._id}>
              <S.TodayImg src={el.images[0] || el.images[1]?  `https://storage.googleapis.com/${el.images[0] || el.images[1]}` : `/NoImage.webp`}/>
-             <S.TodayName>상품명 : {el.name}</S.TodayName>
+             <S.TodayName onClick={props.DeleteBasket} id={el._id} >상품명 : {el.name}</S.TodayName>
              <S.TodayPrice>가격 : {el.price}</S.TodayPrice>
          </S.Column>
      ))}

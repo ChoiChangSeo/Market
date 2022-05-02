@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
 export const Wrapper = styled.div`
-  width: 100%;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,24 +9,32 @@ export const Wrapper = styled.div`
     align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('/LoginBackground.jpg');
+    background-color: #F2F0EB;
 `
 export const LoginWrapper = styled.div`
-    width: 30%;
+    width: 20%;
     height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 15%;
-    padding: 3% 3%;
+    padding: 3% 0% 3% 0%;
     border-radius: 5%;
-    border: 1px solid lightgray;
+    border: 2px solid #F24130;
+`
+export const LoginBox = styled.form`
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 `
 export const Email = styled.input`
     width: 80%;
     height: 25%;
     margin-bottom: 1%;
-    border: 1px solid lightgray;
+    border: 2px solid #F24130;
     border-radius: 10px;
     background-color: transparent;
     color: gray;
@@ -36,7 +44,7 @@ export const Password = styled.input`
     width: 80%;
     height: 25%;
     margin-bottom: 5%;
-    border: 1px solid lightgray;
+    border: 2px solid #F24130;
     border-radius: 10px;
     background-color: transparent;
     color: gray;
@@ -44,9 +52,11 @@ export const Password = styled.input`
 export const LoginButton = styled.button`
     width: 80%;
     height: 25%;
+    border: none;
     margin-bottom: 10%;
     border-radius: 10px;
-    background-color: gray;
+    background-color: #F2522E;
+    color: #F2F0EB;
     cursor: pointer;
 `
 export const MarkLine = styled.div`

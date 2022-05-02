@@ -1,7 +1,7 @@
 import Dompurify from "dompurify";
 import { MouseEvent } from "react";
 import KakaoMap from "../../../commons/Map";
-// import KakaoMap2 from "../../../commons/Map/DetailMap";
+import { getDate } from "../../../../commons/libraries/utils";
 
 import * as S from '../ProductDetail/productDetail.styles'
 
@@ -12,6 +12,7 @@ interface IProductDetailPresenter{
     onClickDelete : () => void
     onClickBuy : () => void
     onClickPick: (event:MouseEvent<HTMLImageElement>) => void
+    onClickMoveList : () => void
 }
 export default function ProductDetailPresenter(props:IProductDetailPresenter){
     return(
@@ -20,9 +21,8 @@ export default function ProductDetailPresenter(props:IProductDetailPresenter){
                 <S.UserImage src="/UserImg.png"/>
                 <S.UserDateWrapper>
                     <S.UserName>{props.data?.fetchUseditem.name}</S.UserName>
-                    <S.CreatedAt>{props.data?.fetchUseditem.createdAt}</S.CreatedAt>
+                    <S.CreatedAt>{getDate(props.data?.fetchUseditem.createdAt)}</S.CreatedAt>
                 </S.UserDateWrapper>
-                <S.Address src="/Map.png"/>
             </S.Header>
             <S.Mark></S.Mark>
             <S.BodyWrapper>
@@ -57,7 +57,7 @@ export default function ProductDetailPresenter(props:IProductDetailPresenter){
                 <S.Mark></S.Mark>
             </S.BodyWrapper>
             <S.FooterWrapper>
-                <S.ListButton>목록으로</S.ListButton>
+                <S.ListButton onClick={props.onClickMoveList}>목록으로</S.ListButton>
                 {props.data?.fetchUseditem.seller.email === props.UserData?.fetchUserLoggedIn.email?
                 <>
                 <S.EditButton onClick={props.onClickEdit}>수정하기</S.EditButton>  

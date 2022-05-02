@@ -21,6 +21,7 @@ const FETCH_USED_ITEMS = gql`
 export default function ProductListContainer(){
 const {data,fetchMore} = useQuery<Pick<IQuery,"fetchUseditems">,IQueryFetchUseditemsArgs>(FETCH_USED_ITEMS)
 const [basketItems, setBasketItems] = useState([]);
+const [del,setDel] = useState(false)
 
 const newDate = new Date();
 const yyyy = newDate.getFullYear();
@@ -56,17 +57,23 @@ const onClickBasket = (el:IBoard) => (event:MouseEvent<HTMLDivElement>) => {
 
   const temp = baskets.filter((basketEl: IBoard) => basketEl._id === el._id);
   if (temp.length === 1) {
-    return alert("이미 담으신 게시글입니다.");
+    return console.log("")
   }
+  // alert("이미 담으신 게시글입니다.");
   const { __typename, ...rest } = el;
   baskets.push(rest);
   localStorage.setItem(Today, JSON.stringify(baskets)); 
 }
-
+const DeleteBasket = (event:MouseEvent<HTMLDivElement>) => {
+  const basketItems = JSON.parse(localStorage.getItem(Today) || "[]");
+  const temp = basketItems.filter((basketEl: IBoard) => basketEl._id !== (event.target as HTMLDivElement).id);
+  localStorage.setItem(Today, JSON.stringify(temp));
+  setDel((prev)=>!prev)
+};
 useEffect(() => {
   const Day = JSON.parse(localStorage.getItem(Today) || "[]");
   setBasketItems(Day);
-},[]);
+},[del]);
 
  return(
     <ProductListPresenter 
@@ -74,6 +81,7 @@ useEffect(() => {
     onLoadMore={onLoadMore} 
     MoveToDetail={MoveToDetail}
     onClickBasket = {onClickBasket}
+    DeleteBasket={DeleteBasket}
     basketItems={basketItems}/>
  )
 }

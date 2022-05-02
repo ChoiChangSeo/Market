@@ -100,11 +100,14 @@ const onClickPick = async(event:MouseEvent<HTMLImageElement>) => {
                 variables:{useditemId: router.query.boardId}
             }]
         })
-    }catch(error){
+    }catch(error:any){
         Modal.error({content:error.message})
     }
 }
+const onClickMoveList = () => {
+    router.push('/boards')
+}
     return(
-    <ProductDetailPresenter UserData={UserData} onClickPick={onClickPick} onClickBuy={onClickBuy} onClickDelete={onClickDelete} onClickEdit={onClickEdit} data={data}/>
+    <ProductDetailPresenter UserData={UserData} onClickPick={onClickPick} onClickBuy={onClickBuy} onClickDelete={onClickDelete} onClickEdit={onClickEdit} onClickMoveList={onClickMoveList} data={data}/>
     )
 }

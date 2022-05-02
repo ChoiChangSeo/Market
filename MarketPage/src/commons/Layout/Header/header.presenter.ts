@@ -37,8 +37,14 @@ export const Login = styled.div`
 `
 export const SignUp = styled.div`
   font-size: 20px;
+  margin-right: 15px;
   cursor: pointer;
 `
+export const LogOut = styled.div`
+  font-size: 20px;
+  cursor: pointer;
+`
+
 export const Mark = styled.div`
   margin-right: 15px;
   height: 30px;

@@ -43,7 +43,6 @@ export default function LoginPageContainer(){
         })
         const accessToken = result.data.loginUser.accessToken;
         setAccessToken(accessToken);
-        localStorage.setItem("refreshToken", "true");
         Modal.success({content:"로그인에 성공하였습니다."})
         router.push('/boards')
         }catch(error){

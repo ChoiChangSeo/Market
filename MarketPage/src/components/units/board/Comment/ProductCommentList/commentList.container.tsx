@@ -18,6 +18,8 @@ const FETCH_USEDITEM_QUESTION = gql`
     }
 `
 
+
+
 export default function CommentListContainer(){
     const router = useRouter()
     const {data,fetchMore} = useQuery<Pick<IQuery,"fetchUseditemQuestions">,IQueryFetchUseditemQuestionsArgs>(FETCH_USEDITEM_QUESTION,({

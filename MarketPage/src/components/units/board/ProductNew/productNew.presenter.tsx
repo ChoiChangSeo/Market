@@ -52,7 +52,7 @@ export default function ProductNewPresenter (props:IProductNewPresenter){
             <S.Span onClick={props.DeleteTags} id={idex} key={idex}>{el}</S.Span>
           ))}
         </div>
-                <S.ProductTag onKeyUp={props.onKeyUpHash} id="tags" placeholder='#태그 #태그 #태그'/>
+                <S.ProductTag onKeyUp={props.onKeyUpHash} placeholder='#태그 #태그 #태그'/>
             </S.ProductPriceTagWrapper>
             <S.LocationWrapper>
                 <S.Location>
