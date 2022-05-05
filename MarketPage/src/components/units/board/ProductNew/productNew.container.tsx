@@ -49,7 +49,7 @@ const schema = yup.object({
     name:yup.string().required("상품제목은 필수입력입니다."),
     remarks:yup.string().required("상품제목 요약은 필수입력입니다."),
     contents:yup.string().required("상품상세정보는 필수입력입니다."),
-    price : yup.number().required("상품가격은 필수입력입니다."),
+    price : yup.number().typeError("상품가격만 숫자로 입력해주세요.").required("상품가격은 필수입력입니다."),
     useditemAddress:yup.object({
         address:yup.string(),
         addressDetail:yup.string()
@@ -60,7 +60,7 @@ const nonSchema = yup.object({
     name:yup.string(),
     remarks:yup.string(),
     contents:yup.string(),
-    price : yup.number(),
+    price : yup.number().typeError("상품가격만 숫자로 입력해주세요.").required("상품가격은 필수입력입니다."),
     useditemAddress:yup.object({
         address:yup.string(),
         addressDetail:yup.string()

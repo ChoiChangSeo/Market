@@ -3,6 +3,7 @@ import * as S from "../ProductCommentWrite/commentWrite.styles"
 interface ICommentWritePresenter{
     register:any
     handleSubmit:any
+    CommentLength : string
     el?:any
     onClickSubmitComment: (data:any) => void
     onClickUpdateComment: (data:any) => void
@@ -18,7 +19,7 @@ export default function CommentWritePresenter(props:ICommentWritePresenter){
             </S.QuestionWrapper>
             <S.QuestionTextArea defaultValue={props.el?.contents} {...props.register("contents")}/>
             <S.QuestionSubmitWrapper>
-                <S.CommentLength>0/100</S.CommentLength>
+                <S.CommentLength>{props.CommentLength? props.CommentLength.length:0}/100</S.CommentLength>
                 <S.SubmitButton>{props.isEdit? "수정하기":"문의하기"}</S.SubmitButton>
             </S.QuestionSubmitWrapper>
             </form>

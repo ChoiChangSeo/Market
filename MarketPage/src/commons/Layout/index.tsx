@@ -8,8 +8,10 @@ import { useRouter } from "next/router";
 
 const Body = styled.div`
   display: flex;
+  height: auto;
   flex-direction: column;
   align-items: center;
+  background-color:#F2F0EB;
 `;
 
 interface LayOutPageProps {

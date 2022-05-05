@@ -17,17 +17,6 @@ export default function KakaoMap(props:IKakaoMap) {
     document.head.appendChild(script);
 
     script.onload = () => {
-      if(!props.address && !props.data){
-        return window.kakao.maps.load(function () {
-          const container = document.getElementById("map");
-          const options = {
-            center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3,
-          };
-          const map = new window.kakao.maps.Map(container, options);
-          return map
-        })
-      }else{
       window.kakao.maps.load(function () {
         const container = document.getElementById("map");
         const options = {
@@ -37,7 +26,7 @@ export default function KakaoMap(props:IKakaoMap) {
         const map = new window.kakao.maps.Map(container, options);
         const geocoder = new window.kakao.maps.services.Geocoder();
  
-        geocoder.addressSearch(props.address? props.address : props.data?.fetchUseditem.useditemAddress?.address, function(result:any, status:any) {
+        geocoder.addressSearch(props.address || props.data?.fetchUseditem.useditemAddress?.address || "제주 제주시 첨단로 242", function(result:any, status:any) {
            if (status === window.kakao.maps.services.Status.OK) {
               const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
               const marker = new window.kakao.maps.Marker({
@@ -45,7 +34,7 @@ export default function KakaoMap(props:IKakaoMap) {
                   position: coords
               });
               const infowindow = new window.kakao.maps.InfoWindow({
-                  content: `<div style="width:150px;text-align:center;padding:6px 0;">거래장소 </br> ${props.address? props.address : props.data?.fetchUseditem.useditemAddress?.address}</div>`
+                  content: `<div style="width:150px;text-align:center;padding:6px 0;">거래장소 </br> ${props.address || props.data?.fetchUseditem.useditemAddress?.address || "거래장소 주소를 검색해주세요"}</div>`
               });
               infowindow.open(map, marker);
               map.setCenter(coords);
@@ -53,13 +42,12 @@ export default function KakaoMap(props:IKakaoMap) {
       });  
       });
     }
-    }
   }, [props.address || props.data]);
  
 
   return (
     <>
-      <div id="map" style={{ width: "384px", height: "252px" }}></div>
+      <div id="map" style={{ width: "100%", height: "100%" }}></div>
     </>
   );
 }

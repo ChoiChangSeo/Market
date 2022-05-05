@@ -22,6 +22,7 @@ export default function ProductListContainer(){
 const {data,fetchMore} = useQuery<Pick<IQuery,"fetchUseditems">,IQueryFetchUseditemsArgs>(FETCH_USED_ITEMS)
 const [basketItems, setBasketItems] = useState([]);
 const [del,setDel] = useState(false)
+const [sold,setSold] = useState(false)
 
 const newDate = new Date();
 const yyyy = newDate.getFullYear();
@@ -75,12 +76,18 @@ useEffect(() => {
   setBasketItems(Day);
 },[del]);
 
+const onClickSold = () => {
+  setSold(prev=>!prev)
+}
+
  return(
     <ProductListPresenter 
-    data={data} 
+    data={data}
+    sold={sold}
     onLoadMore={onLoadMore} 
     MoveToDetail={MoveToDetail}
     onClickBasket = {onClickBasket}
+    onClickSold ={onClickSold}
     DeleteBasket={DeleteBasket}
     basketItems={basketItems}/>
  )

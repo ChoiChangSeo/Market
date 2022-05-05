@@ -19,13 +19,11 @@ export default function NavigationLayout() {
   return (
     <>
       <S.Wrapper>
-        <S.Mark></S.Mark>
         <S.Board onClick={onClickMoveBoardList}>상품등록</S.Board>
         <S.Mark></S.Mark>
         <S.Market onClick={onClickMoveProductList}>중고마켓</S.Market>
         <S.Mark></S.Mark>
         <S.MyPage onClick={onClickMoveMyPage}>마이페이지</S.MyPage>
-        <S.Mark></S.Mark>
       </S.Wrapper>
     </>
   );

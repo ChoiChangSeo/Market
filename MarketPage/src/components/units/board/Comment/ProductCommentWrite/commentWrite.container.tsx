@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import CommentWritePresenter from './commentWrite.presenter';
 
 
+
 const CREATE_USEDITEM_QUESTION = gql`
     mutation createUseditemQuestion($createUseditemQuestionInput:CreateUseditemQuestionInput! $useditemId:ID!){
         createUseditemQuestion(createUseditemQuestionInput:$createUseditemQuestionInput, useditemId:$useditemId){
@@ -51,12 +52,15 @@ interface ICommentWriteContainer{
 
 export default function CommentWriteContainer(props:ICommentWriteContainer){
 const router = useRouter()
+// const [commentLength,setCommentLength] = useState("")
 const [updateUseditemQuestion] = useMutation(UPDATE_USEDITEM_QUESTION)
 const [createUseditemQuestion] = useMutation(CREATE_USEDITEM_QUESTION)
-const {register, handleSubmit} = useForm({
+const {register, handleSubmit,watch} = useForm({
     resolver:yupResolver(schema),
     mode:"onChange",
 })
+const CommentLength = watch("contents")
+// setCommentLength(CommentLength)
 
 const onClickSubmitComment = async(data:any) =>{
     try{
@@ -70,7 +74,7 @@ const onClickSubmitComment = async(data:any) =>{
             variables:{ useditemId : router.query.boardId}
         }]
     })
-    Modal.success({content:"게시글 등록에 성공했습니다."})
+    Modal.success({content:"댓글 등록에 성공했습니다."})
 }catch(error:any){
     Modal.error({content:error.message})
 }
@@ -96,6 +100,6 @@ const onClickUpdateComment = async(data:any) => {
 }
 
     return(
-  <CommentWritePresenter el={props.el} isEdit={props.isEdit} register={register} handleSubmit={handleSubmit} onClickSubmitComment={onClickSubmitComment} onClickUpdateComment={onClickUpdateComment}/>
+  <CommentWritePresenter CommentLength={CommentLength} el={props.el} isEdit={props.isEdit} register={register} handleSubmit={handleSubmit} onClickSubmitComment={onClickSubmitComment} onClickUpdateComment={onClickUpdateComment}/>
     )
 }

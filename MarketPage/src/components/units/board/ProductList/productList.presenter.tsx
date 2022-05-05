@@ -1,12 +1,15 @@
 import { MouseEvent } from 'react'
 import InfiniteScroll from "react-infinite-scroller";
 import * as S from '../ProductList/productList.styles'
+// import ProductSoldOutContainer from '../ProductSoldOut/productsold.container';
 
 interface IProductListPresenter{
+    sold :boolean
     data?:any
     basketItems: any
     MoveToDetail: (event:MouseEvent<HTMLImageElement>) => void
     onLoadMore: () => void
+    onClickSold : () => void
     onClickBasket : (el:any) =>(event:MouseEvent<HTMLDivElement>) => void
     DeleteBasket : (event:MouseEvent<HTMLDivElement>) => void
 }
@@ -31,6 +34,8 @@ export default function ProductListPresenter(props:IProductListPresenter){
           hasMore={true}
           useWindow={false}
         >
+        <div onClick={props.onClickSold}>판매중</div>
+        <div onClick={props.onClickSold}>판매완료</div>
        {props.data?(props.data?.fetchUseditems.map((el:any,index:number) =>(
             <S.Row onClick={props.onClickBasket(el)} key={index}>
                 <S.Image id={el._id} onClick={props.MoveToDetail} src={el.images[0] || el.images[1]?  `https://storage.googleapis.com/${el.images[0] || el.images[1]}` : `/NoImage.webp`} />
@@ -43,6 +48,8 @@ export default function ProductListPresenter(props:IProductListPresenter){
                 <S.Price>{el.price}원</S.Price>
             </S.Row>
         ))):(<div></div>)}
+        {/* {props.sold? <ProductSoldOutContainer/>
+        :(<div></div>)} */}
         </InfiniteScroll>
         </S.StyleScroll>
      </S.Wrapper>

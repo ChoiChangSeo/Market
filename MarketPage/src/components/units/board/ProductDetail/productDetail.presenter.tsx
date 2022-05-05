@@ -28,9 +28,9 @@ export default function ProductDetailPresenter(props:IProductDetailPresenter){
             <S.BodyWrapper>
                 <S.BodyHeader>
                     <S.ProductNameWrapper>
-                        <S.Remarks>{props.data?.fetchUseditem.remarks}</S.Remarks>
-                        <S.ProductName>{props.data?.fetchUseditem.name}</S.ProductName>
-                        <S.Price>{props.data?.fetchUseditem.price}원</S.Price>
+                        <S.ProductName>상품명 : {props.data?.fetchUseditem.name}</S.ProductName>
+                        <S.Remarks>한줄요약 : {props.data?.fetchUseditem.remarks}</S.Remarks>
+                        <S.Price>가격 : {props.data?.fetchUseditem.price}원</S.Price>
                     </S.ProductNameWrapper>
                     <S.LikeWrapper>
                         <S.Like onClick={props.onClickPick} src="/Like.png"/>

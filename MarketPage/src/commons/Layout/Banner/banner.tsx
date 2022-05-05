@@ -3,11 +3,9 @@ import Slider from "react-slick";
 
 export default function BannerLayout() {
   const Wrapper = styled.div`
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: 3%;
-    background-size: cover;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("/LoginBackground.jpg");
+    padding: 3% 0% 3% 0%;
+    background-color: #F2F0EB;
+    border-bottom: 2px solid #590242;
   `;
 
   const settings = {
@@ -19,27 +17,27 @@ export default function BannerLayout() {
   };
 
   const Number1 = styled.div`
-    margin: 6% 0% 0% 37%;
+    text-align: center;
     font-weight: bold;
     font-size: 100px;
-    color: yellowgreen;
+    color: #F2522E;
   `;
 
   const Number2 = styled.div`
-    margin: 6% 0% 10% 38%;
+    text-align: center;
     font-weight: bold;
     font-size: 100px;
-    color: yellowgreen;
+    color: #F2522E;
   `;
 
   return (
     <Wrapper>
       <Slider {...settings}>
           <Number1>
-            With.Market
+            안녕하세요
           </Number1>
-          <Number2> 
-            여기 다있소
+          <Number2>
+            WithMarket
           </Number2>
       </Slider>
     </Wrapper>

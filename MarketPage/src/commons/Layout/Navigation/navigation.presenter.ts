@@ -4,34 +4,39 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 64px;
-  background-color: #0048b3;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: #F2F0EB;
+  border-bottom: 2px solid #590242;
 `;
 
 export const Mark = styled.div`
-  margin: 0px 100px 0px 100px;
+  height: 5vh;
+  margin: 0 10% 0 10%;
   border: none;
-  border-left: 5px solid white;
+  border-left: 2px solid #590242;
+
 `;
 
 export const Board = styled.div`
-  line-height: 60px;
   font-size: 25px;
   font-weight: bold;
-  color: white;
+  text-align: center;
+  color: #F2522E;
   cursor: pointer;
 `;
 
 export const Market = styled.div`
-  line-height: 60px;
   font-size: 25px;
   font-weight: bold;
-  color: white;
+  text-align: center;
+  color: #F2522E;
 `;
 
 export const MyPage = styled.div`
-  line-height: 60px;
   font-size: 25px;
   font-weight: bold;
-  color: white;
+  text-align: center;
+  color: #F2522E;
 `;

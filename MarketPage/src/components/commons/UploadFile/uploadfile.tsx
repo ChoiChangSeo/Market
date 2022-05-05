@@ -22,11 +22,14 @@ const Wrapper = styled.div`
   const Img = styled.img`
     width: 100px;
     height: 100px;
+    margin-left: 2%;
+    border: 3px solid #F2522E;
+    border-radius: 15px;
   `
   const Button = styled.button`
     width: 100px;
     height: 100px;
-    border: 1px solid red;
+    font-size: 16px;
   `
 
   interface IUploadFile {

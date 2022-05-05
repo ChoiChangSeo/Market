@@ -1,28 +1,32 @@
 import styled from "@emotion/styled"
 
 export const Wrapper = styled.div`
-    width: 1200px;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-top: 20px;
     border: none;
-    border-bottom: 1px solid #BDBDBD;
+    border-bottom: 2px solid #F2522E;
 `
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 `
 export const UserImg = styled.img`
-    width: 20px;
-    height: 20px;
+    width: 6.5%;
+    height: 35px;
+    margin-right: 2%;
 `
 
 export const ContentsWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: auto;
 `
 
 export const UserName = styled.div`
@@ -46,7 +50,10 @@ export const CreatedAt = styled.div`
     color: #BDBDBD;
 `
 export const EditDelButton = styled.div`
-    
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
 `
 export const ReplyEdit = styled.img`
     width: 20px;

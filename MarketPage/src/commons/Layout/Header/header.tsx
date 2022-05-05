@@ -47,13 +47,10 @@ export default function HeaderLayout() {
   return (
     <S.Wrapper>
       <S.NavDiv>
-        <S.EarthImg
-        src="/mainlogo.png"
-        ></S.EarthImg>
         <S.MainName>WithMarket</S.MainName>
       </S.NavDiv>
       <S.NavDiv1>
-        <S.Login onClick={accessToken? undefined : onClickMoveLogin}>{accessToken? `${data?.fetchUserLoggedIn.name}` : "로그인"}</S.Login>
+        <S.Login onClick={accessToken? undefined : onClickMoveLogin}>{accessToken? `${data?.fetchUserLoggedIn.name}`:"로그인"}</S.Login>
         <S.Mark></S.Mark>
         <S.SignUp onClick={accessToken? undefined :onClickMoveSignUp}>{accessToken? `${data?.fetchUserLoggedIn.email}` :"회원가입"}</S.SignUp>
         {accessToken &&

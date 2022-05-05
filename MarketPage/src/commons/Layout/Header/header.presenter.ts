@@ -3,51 +3,50 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 100%;
-  height: 90px;
-  background-color: white;
+  height: auto;
+  border-bottom: 3px solid #590242;
+  background-color: #F2F0EB;
 `;
 export const NavDiv = styled.div`
   display: flex;
   align-items: center;
+  margin-right: 20%;
 `
 export const NavDiv1 = styled.div`
+  width: 30%;
   display: flex;
-  align-items: center; 
-  margin-right: 20px;
+  justify-content: space-around;
+  align-items: center;
 `
-export const EarthImg = styled.img`
-  width: 130px;
-  height: 80px;
-`;
 
 export const MainName = styled.div`
-  margin-left: 10px;
-  color: black;
+  margin-left: 5%;
+  color: #F2522E;
   font-weight: bold;
   font-size: 40px;
 `;
 
 export const Login = styled.div`
-  margin-right: 15px;
   font-size: 20px;
+  color: #F2522E;
   cursor: pointer;
 `
 export const SignUp = styled.div`
   font-size: 20px;
-  margin-right: 15px;
+  color: #F2522E;
   cursor: pointer;
 `
 export const LogOut = styled.div`
   font-size: 20px;
+  color: #F2522E;
   cursor: pointer;
 `
 
 export const Mark = styled.div`
-  margin-right: 15px;
-  height: 30px;
+  margin: 0 10% 0 10%;
+  height: 20px;
   border: none;
-  border-left: 2px solid black;
+  border-left: 3px solid #590242;
 `
