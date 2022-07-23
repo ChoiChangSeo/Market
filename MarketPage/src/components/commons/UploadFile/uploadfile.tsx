@@ -56,7 +56,6 @@ export default function UploadFile(props:IUploadFile) {
         if(error instanceof Error) Modal.error({content:error.message})
       }
     })
-
   }
   
   const onClickImg = () =>{

@@ -2,7 +2,6 @@ import Dompurify from "dompurify";
 import { MouseEvent } from "react";
 import KakaoMap from "../../../commons/Map";
 import { getDate } from "../../../../commons/libraries/utils";
-
 import * as S from '../ProductDetail/productDetail.styles'
 
 interface IProductDetailPresenter{

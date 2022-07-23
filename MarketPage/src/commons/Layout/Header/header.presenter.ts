@@ -9,13 +9,9 @@ export const Wrapper = styled.div`
   border-bottom: 3px solid #590242;
   background-color: #F2F0EB;
 `;
+
 export const NavDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 20%;
-`
-export const NavDiv1 = styled.div`
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;

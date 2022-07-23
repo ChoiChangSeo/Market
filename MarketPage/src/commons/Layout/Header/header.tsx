@@ -46,10 +46,8 @@ export default function HeaderLayout() {
 }
   return (
     <S.Wrapper>
+      <S.MainName>WithMarket</S.MainName>
       <S.NavDiv>
-        <S.MainName>WithMarket</S.MainName>
-      </S.NavDiv>
-      <S.NavDiv1>
         <S.Login onClick={accessToken? undefined : onClickMoveLogin}>{accessToken? `${data?.fetchUserLoggedIn.name}`:"로그인"}</S.Login>
         <S.Mark></S.Mark>
         <S.SignUp onClick={accessToken? undefined :onClickMoveSignUp}>{accessToken? `${data?.fetchUserLoggedIn.email}` :"회원가입"}</S.SignUp>
@@ -59,7 +57,7 @@ export default function HeaderLayout() {
         <S.LogOut onClick={accessToken? onClickLogOut : undefined}>{accessToken? `로그아웃` :""}</S.LogOut>
         </>
         }  
-      </S.NavDiv1>
+      </S.NavDiv>
     </S.Wrapper>
   );
 }

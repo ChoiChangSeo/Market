@@ -1,6 +1,9 @@
 import { useState, ChangeEvent } from 'react';
+import styled from '@emotion/styled';
 import Head from "next/head";
 import { gql, useMutation, useQuery } from '@apollo/client';
+import { Modal } from 'antd';
+
 declare const window: typeof globalThis & {
   IMP: any;
 };
@@ -25,18 +28,34 @@ const CREATE_POINT = gql`
     }
   }
 `
-
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10%;
+`
 export default function PaymentPage() {
   const [amount, setAmount] = useState(100);
   const {data} = useQuery(FETCH_USER)
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [createPointTransactionOfLoading] = useMutation(CREATE_POINT)
   const onChangeAmount = (event:ChangeEvent<HTMLInputElement>) => {
     setAmount(event.target.valueAsNumber)
   }
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
  
 
   const requestPay = async() => {
+    if(amount<100){
+      return alert("충전가능 금액은 100원 이상부터입니다.")
+    }
     const IMP = window.IMP;
     IMP.init("imp49910675");
     IMP.request_pay(
@@ -57,8 +76,10 @@ export default function PaymentPage() {
               }]
             })
             alert("충전에 성공하였습니다.")
+            setIsModalVisible(false);
         } else {
           alert("결제에 실패하였습니다. 다시 시도해주세요.");
+          setIsModalVisible(false);
         }
       }
     );
@@ -75,8 +96,18 @@ export default function PaymentPage() {
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
         ></script>
       </Head>
-      <button style={{width:"100",height:"100"}} onClick={requestPay}>포인트 충전하기</button>
-      <input type="number" onChange={onChangeAmount} placeholder="충전가능 금액은 100원 이상부터 입니다." />
+      <Wrapper>
+      <button style={{width:"100%",height:"5%",marginBottom:"5%"}} onClick={showModal}>포인트 충전하기</button>
+      
+      </Wrapper>
+      {isModalVisible &&(
+      <Modal 
+            visible={true}
+            onOk={requestPay}
+            onCancel={handleCancel}
+          >
+           <input style={{width:"100%"}} type="number" onChange={onChangeAmount} placeholder="충전가능 금액은 100원 이상입니다." />
+          </Modal>)}
     </div>
   );
 }

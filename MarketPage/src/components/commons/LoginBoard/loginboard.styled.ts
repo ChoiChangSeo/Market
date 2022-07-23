@@ -2,18 +2,16 @@ import styled from "@emotion/styled"
 
 export const Wrapper = styled.div`
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-repeat: no-repeat;
     background-size: cover;
     background-color: #F2F0EB;
 `
 export const LoginWrapper = styled.div`
-    width: 20%;
-    height: 40%;
+    width: 30%;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,6 +36,12 @@ export const Email = styled.input`
     border-radius: 10px;
     background-color: transparent;
     color: gray;
+    padding: 1%;
+    font-size: 13px;
+    ::placeholder{
+        padding: 1%;
+        font-size: 13px;
+    }
 `
 
 export const Password = styled.input`
@@ -48,6 +52,12 @@ export const Password = styled.input`
     border-radius: 10px;
     background-color: transparent;
     color: gray;
+    padding: 1%;
+    font-size: 13px;
+    ::placeholder{
+        padding: 1%;
+        font-size: 13px;
+    }
 `
 export const LoginButton = styled.button`
     width: 80%;
@@ -58,6 +68,7 @@ export const LoginButton = styled.button`
     background-color: #F2522E;
     color: #F2F0EB;
     cursor: pointer;
+    font-size: 15px;
 `
 export const MarkLine = styled.div`
     width: 80%;
@@ -75,14 +86,17 @@ export const LoginNavWrapper = styled.div`
 export const EmailFind = styled.div`
     color: gray;
     cursor: pointer;
+    font-size: 13px;
 `
 export const PasswordFind = styled.div`
     color: gray;
     cursor: pointer;
+    font-size: 13px;
 `
 export const SignUp = styled.div`
     color: gray;
     cursor: pointer;
+    font-size: 13px;
 `
 export const Mark = styled.div`
     width: 1%;

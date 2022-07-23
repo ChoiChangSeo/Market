@@ -10,8 +10,8 @@ import { accessTokenState } from "../../../commons/store";
 
 
 const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+  mutation loginUserExample($email: String!, $password: String!) {
+    loginUserExample(email: $email, password: $password) {
       accessToken
     }
   }
@@ -29,7 +29,7 @@ interface ILogin{
 
 
 export default function LoginPageContainer(){
-    const [loginUser] = useMutation(LOGIN_USER)
+    const [loginUserExample] = useMutation(LOGIN_USER)
     const [, setAccessToken] = useRecoilState(accessTokenState);
     const router = useRouter()
     const {register, handleSubmit, formState} = useForm({
@@ -38,10 +38,10 @@ export default function LoginPageContainer(){
 
     const onClickLogin = async (data:ILogin) =>{
         try{
-        const result = await loginUser({
+        const result = await loginUserExample({
             variables:{...data}
         })
-        const accessToken = result.data.loginUser.accessToken;
+        const accessToken = result.data.loginUserExample.accessToken;
         setAccessToken(accessToken);
         Modal.success({content:"로그인에 성공하였습니다."})
         router.push('/boards')

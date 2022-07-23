@@ -17,7 +17,7 @@ export default function LoginPagePresenter(props:ILoginPagePresenterProps){
                     <S.LoginBox onSubmit={props.handleSubmit(props.onClickLogin)}>
                     <S.Email {...props.register("email")} placeholder="이메일을 입력해주세요"></S.Email>
                     <S.ErrorMsg>{props.formState.errors.email?.message}</S.ErrorMsg>
-                    <S.Password {...props.register("password")} placeholder="비밀번호를 입력해주세요"></S.Password>
+                    <S.Password type="password" {...props.register("password")} placeholder="비밀번호를 입력해주세요"></S.Password>
                     <S.ErrorMsg>{props.formState.errors.password?.message}</S.ErrorMsg>
                     <S.LoginButton>로그인하기</S.LoginButton>
                     </S.LoginBox>

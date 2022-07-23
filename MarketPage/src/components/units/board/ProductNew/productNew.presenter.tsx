@@ -35,8 +35,7 @@ interface IProductNewPresenter{
 }
 
 export default function ProductNewPresenter (props:IProductNewPresenter){
-    const toolbarOptions = [[{ header: [1, 2, 3, false] }], [{
-        'size':  ['10px', '12px', '14px','16px','18px','20px','24px','26px','32px','48px'] }], 
+    const toolbarOptions = [[{ header: [1, 2, 3, false] }],
        ["bold", "italic", "underline", "strike"], ["blockquote"], [{ list: "ordered" }, { list: "bullet" }], [{ color: [] }, { background: [] }], [{ align: [] }], ];
     const formats = [
         "header",

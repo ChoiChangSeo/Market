@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 
 export const Wrapper = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: row;
     padding: 50px 50px 50px 50px;
@@ -8,6 +9,7 @@ export const Wrapper = styled.div`
 
 export const TodayColumn = styled.div`
     display: flex;
+    width: 10%;
     flex-direction: column;
     margin-right: 40px;
 `
@@ -66,6 +68,10 @@ export const TodayImg = styled.img`
     height: 100px;
 `
 export const TodayName = styled.div`
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: 'Noto Sans CJK KR';
     font-weight: 700;
     font-size: 15px;

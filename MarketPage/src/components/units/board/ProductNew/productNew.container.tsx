@@ -130,6 +130,7 @@ const onChangeContents = (value: string) => {
 
   const handleComplete = (data: any) => {
     setIsModalVisible((prev) => !prev);
+    console.log(data.address)
     setAddress(data.address);
   };
 
